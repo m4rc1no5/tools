@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # ------------------------------------------------------------------------------------
-# USE AT YOUR OWN RISK. Tested on Linux Mint 17.1 with apache2.
+# USE AT YOUR OWN RISK. Tested on Linux Mint 17.1 with nginx.
 # CHECK COMMENTS BEFORE RUNNING
 #
 # This script creates localhost website folder and adds virtual domain with sufix .lh
-# eg. "sudo ./addLocalHostApache.sh test" will create test.lh local domain
+# eg. "sudo ./addVirualHostNginx.sh test" will create test.lh local domain
 #
 # Before run this script please view config.sh and check variables!
 # ------------------------------------------------------------------------------------
@@ -27,20 +27,16 @@ pathToIndex="${htdocs}${website}/index.html"
 
 # virtual host lines; check the logs paths!
 virtHost="
-<VirtualHost *:80>
-    ServerAdmin ${user_mail}
-    ServerName ${website}.lh
-    ServerAlias *.${website}.lh
-    DocumentRoot ${htdocs}${website}
-    ErrorLog /var/log/apache2/${website}_error.log
-    CustomLog /var/log/apache2/${website}_access.log combined
-    <Directory ${htdocs}${website}>
-        # enable the .htaccess rewrites
-        AllowOverride All
-        Allow from All
-        Require all granted
-    </Directory>
-</VirtualHost>"
+server {
+    listen   80; ## listen for ipv4; this line is default and implied
+    #listen   [::]:80 default ipv6only=on; ## listen for ipv6
+
+    root ${htdocs}${website};
+    index index.html index.htm index.php;
+
+    # Make site accessible from http://localhost/
+    server_name ${website}.lh;
+}"
 
 # create directory
 echo "Create directory ${pathToWebsiteDirectory}"
@@ -60,16 +56,16 @@ echo "Add hello ${website}! to ${pathToIndex}"
 echo "hello ${website}!" >> ${pathToIndex}
 
 # add virtualhost
-echo "Add virtalhost config to apache sites-available and sites-enabled"
-pathToWebsiteConf=${apacheSitesAvailablePath}${website}_lh.conf
+echo "Add virtalhost config to nginx sites-available and sites-enabled"
+pathToWebsiteConf=${nginxSitesAvailablePath}${website}_lh.conf
 touch ${pathToWebsiteConf}
 echo "${virtHost}" >> ${pathToWebsiteConf}
-ln -s ${pathToWebsiteConf} ${apacheSitesEnabledPath}${website}_lh.conf
+ln -s ${pathToWebsiteConf} ${nginxSitesEnabledPath}${website}_lh.conf
 
 # add host into hosts
 echo "Add host into hosts file (${hostsPath})"
 echo "127.0.0.1	${website}.lh" >> ${hostsPath}
 
-# restart apache
-echo "Restart apache2"
-service apache2 restart
+# restart nginx
+echo "Restart nginx"
+service nginx restart
