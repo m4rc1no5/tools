@@ -35,7 +35,10 @@ server {
     index index.html index.htm index.php;
 
     # Make site accessible from http://localhost/
-    server_name ${website}.lh;
+    server_name ${website}.lh www.${website}.lh;
+
+    error_log /var/log/nginx/${website}_error.log;
+    access_log /var/log/nginx/${website}_access.log;
 }"
 
 # create directory
