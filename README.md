@@ -22,10 +22,10 @@ This script send and add your public SSH Key to Remote Server.
 bash/AddSshKey/addSshKey.sh marceen 123.123.123.123 222
 ```
 
-variables:
-marceen - username
-123.123.123.123 - hostname
-222 - port
+**variables:**
+*marceen* - username
+*123.123.123.123* - hostname
+*222* - port
 
 If remote server (or your machine) doesn't have ~/.ssh folder You can create it by command:
 
