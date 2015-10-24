@@ -11,13 +11,21 @@
 # ------------------------------------------------------------------------------------
 
 # read config file
-source config.sh
+dir="$( dirname "${BASH_SOURCE[0]}" )"
+file=${dir}/config.sh
+
+if [ -f ${file} ];
+then
+    source ${file}
+else
+    echo "File ${file} doesn't exist."
+    exit
+fi
 
 # check if is set website variable
 website="$@"
 if [ -z "$website" ]; then
 	echo "Please add website name - eg. test"
-	echo " "
 	exit
 fi
 
