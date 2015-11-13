@@ -35,7 +35,7 @@ If remote server (or your machine) doesn't have ~/.ssh folder You can create it 
 ssh-keygen -t rsa
 ```
 
-<a href="add_virtual_host_apache"></a>
+<a name="add_virtual_host_apache"></a>
 Add Virtual Host in Apache
 --------------------------
 
@@ -57,7 +57,7 @@ will create local domain test.lh.
 
 After this script You can enter browser and write adress test,lh and You will see "hello test!" on screen. :)
 
-<a href="add_virtual_host_nginx"></a>
+<a name="add_virtual_host_nginx"></a>
 Add Virtual Host in Nginx
 --------------------------
 
