@@ -1,0 +1,20 @@
+{
+  "name": "m4rc1no5/tools",
+  "description": "Some PHP and bash tools",
+  "keywords": ["PHP", "Bash", "command line", "cmd", "linux", "Apache", "Nginx"],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Marcin Zaremba",
+      "homepage": "http://marceen.pl",
+      "email": "marcin.zaremba@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+  "autoload": {
+    "psr-0": { "m4rc1no5_tools": "php/" }
+  }
+}
