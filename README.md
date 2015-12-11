@@ -1,5 +1,7 @@
 # tools
 
+[![Total Downloads](https://poser.pugx.org/m4rc1no5/tools/downloads)](https://packagist.org/packages/m4rc1no5/tools)
+
 This project contains useful tools to improve my work. :)
 
 Documentation
